@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Location from "./components/Location";
+import SeachBox from "./components/SeachBox";
+import Weather from "./components/Weather";
 
 const api = {
   key: "706a03f142ba1c09c641ca8aa0053b9b",
@@ -14,7 +17,7 @@ function App() {
   const search = async (evt) => {
     if (evt.key === "Enter") {
       const response = await fetch(
-        `${api.base}weather?q=${query}&units=metric&APPID=${api.key}`
+        `${api.base}weather?q=${query}&units=metric&APPID=${api.key}&lang=pt_br`
       );
       const data = await response.json();
 
@@ -80,10 +83,11 @@ function App() {
     const fetchByLocation = async () => {
       if (location.lat && location.long !== "undefined") {
         const response = await fetch(
-          `${api.base}weather?lat=${location.lat}&lon=${location.long}&units=metric&appid=${api.key}`
+          `${api.base}weather?lat=${location.lat}&lon=${location.long}&units=metric&appid=${api.key}&lang=pt_br`
         );
         const data = await response.json();
         setWeather(data);
+        console.log(data);
       }
     };
     fetchByLocation();
@@ -100,32 +104,17 @@ function App() {
       }
     >
       <main>
-        <div className="search-box">
-          <input
-            type="text"
-            className={`${
-              error ? "search-bar search-bar-error" : "search-bar"
-            }`}
-            placeholder="pesquisar..."
-            value={query}
-            onKeyPress={search}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          {error && <p className="error-message">Cidade não encontrada</p>}
-        </div>
+        <SeachBox
+          error={error}
+          setQuery={setQuery}
+          query={query}
+          search={search}
+        />
 
         {typeof weather.main != "undefined" ? (
           <>
-            <div className="location-box">
-              <div className="location">
-                {weather.name}, {weather.sys.country}
-              </div>
-              <div className="date">{dataBuilder(new Date())}</div>
-            </div>
-            <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}°C</div>
-              <div className="weather">{weather.weather[0].main}</div>
-            </div>
+            <Location weather={weather} dataBuilder={dataBuilder} />
+            <Weather weather={weather} />
           </>
         ) : (
           ""
