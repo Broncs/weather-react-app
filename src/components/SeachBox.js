@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { WeatherContext } from "../context/WeatherContext";
 
-const SeachBox = ({ error, setQuery, query, search }) => {
+const SeachBox = () => {
+  const { state, dispatch, search } = useContext(WeatherContext);
+  // error, setQuery, query, search;
   return (
     <div className="search-box">
       <input
         type="text"
-        className={`${error ? "search-bar search-bar-error" : "search-bar"}`}
+        className={`${
+          state.error ? "search-bar search-bar-error" : "search-bar"
+        }`}
         placeholder="pesquisar..."
-        value={query}
+        value={state.query}
         onKeyPress={search}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => dispatch({ type: "SET_QUERY", query: e.target.value })}
       />
-      {error && <p className="error-message">Cidade não encontrada</p>}
+      {state.error && <p className="error-message">Cidade não encontrada</p>}
     </div>
   );
 };
