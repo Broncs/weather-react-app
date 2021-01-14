@@ -8,6 +8,7 @@ const api = {
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
+  const [error, setError] = useState(false);
 
   const search = async (evt) => {
     if (evt.key === "Enter") {
@@ -16,9 +17,13 @@ function App() {
       );
       const data = await response.json();
 
-      setWeather(data);
+      if (data.cod !== "404") {
+        setError(false);
+        setWeather(data);
+      } else {
+        setError(true);
+      }
       setQuery("");
-      console.log(data);
     }
   };
 
@@ -69,12 +74,15 @@ function App() {
         <div className="search-box">
           <input
             type="text"
-            className="search-bar"
-            placeholder="search..."
+            className={`${
+              error ? "search-bar search-bar-error" : "search-bar"
+            }`}
+            placeholder="pesquisar..."
             value={query}
             onKeyPress={search}
             onChange={(e) => setQuery(e.target.value)}
           />
+          {error && <p className="error-message">Cidade não encontrada</p>}
         </div>
 
         {typeof weather.main != "undefined" ? (
