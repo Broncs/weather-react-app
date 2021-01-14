@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const api = {
   key: "706a03f142ba1c09c641ca8aa0053b9b",
@@ -9,6 +9,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [error, setError] = useState(false);
+  const [location, setLocation] = useState({});
 
   const search = async (evt) => {
     if (evt.key === "Enter") {
@@ -59,6 +60,34 @@ function App() {
 
     return `${day} ${date} ${month} ${year}`;
   };
+
+  useEffect(() => {
+    const showPosition = (position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      });
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchByLocation = async () => {
+      if (location.lat && location.long !== "undefined") {
+        const response = await fetch(
+          `${api.base}weather?lat=${location.lat}&lon=${location.long}&units=metric&appid=${api.key}`
+        );
+        const data = await response.json();
+        setWeather(data);
+      }
+    };
+    fetchByLocation();
+  }, [location]);
 
   return (
     <div
