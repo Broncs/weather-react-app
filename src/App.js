@@ -12,23 +12,33 @@ function App() {
       className={
         typeof state.weather.main != "undefined"
           ? state.weather.main.temp > 16
-            ? "App warm"
-            : "App"
-          : "App"
+            ? "bg-warm "
+            : "bg-cold"
+          : "bg-cold"
       }
     >
-      <main>
-        <SeachBox />
+      <div
+        className={
+          typeof state.weather.main != "undefined"
+            ? state.weather.main.temp > 16
+              ? "App warm"
+              : "App"
+            : "App"
+        }
+      >
+        <main className="container">
+          <SeachBox />
 
-        {typeof state.weather.main != "undefined" ? (
-          <>
-            <Location />
-            <Weather />
-          </>
-        ) : (
-          ""
-        )}
-      </main>
+          {typeof state.weather.main != "undefined" ? (
+            <>
+              <Location />
+              <Weather />
+            </>
+          ) : (
+            ""
+          )}
+        </main>
+      </div>
     </div>
   );
 }

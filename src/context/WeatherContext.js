@@ -52,7 +52,7 @@ export const WeatherContextProvider = ({ children }) => {
       "Setembro",
       "Outubro",
       "Novembro",
-      "Decembro",
+      "Dezembro",
     ];
     let days = [
       "Domingo",

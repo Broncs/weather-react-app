@@ -6,10 +6,20 @@
 
 body {
   font-family: "montseratt", sans-serif;
+
+  /* background: url("./assets//raindrops.jpg"); */
+}
+.bg-warm {
+  background-color: #af0069;
+}
+.bg-cold {
+  background-color: #d0e8f2;
 }
 
 .App {
   background-image: url("./assets/cold-bg.jpg");
+  max-width: 700px;
+  margin: auto;
   background-size: cover;
   background-position: bottom;
   transition: 0.4s ease-out;
@@ -100,7 +110,7 @@ main {
   padding: 15px 25px;
 
   color: #fff;
-  font-size: 102px;
+  font-size: 80px;
   font-weight: 900;
 
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
@@ -114,3 +124,24 @@ main {
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
+
+/* iCONS == */
+.icon img {
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+  margin-top: 0.6rem;
+  border-radius: 50%;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 700px) {
+  .location-box .location {
+    font-size: 3rem;
+  }
+  .location-box .date {
+    font-size: 1.7rem;
+  }
+  .weather-box .temp {
+    font-size: 8rem;
+  }
+} ;
