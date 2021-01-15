@@ -1,10 +1,10 @@
-## weather app
+# weather app
 
-ℹ️ Sobre o projeto
+## ℹ️ Sobre o projeto
 
 ### Projeto usando React com useContext, e useReducer (similar ao redux), usando geoLocalização, e a api do openWeather , com dinamico background se a temperatura estiver menor que 16 graus ou maior .
 
-✨ Demonstração
+## ✨ Demonstração
 
 Resultado final : [Link](https://weather-app-v2.netlify.app/)
 
