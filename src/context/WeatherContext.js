@@ -14,7 +14,7 @@ export const WeatherContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(WeatherReducer, initialState);
 
   const api = {
-    key: "706a03f142ba1c09c641ca8aa0053b9b",
+    key: process.env.REACT_APP_API_KEY,
     base: "https://api.openweathermap.org/data/2.5/",
   };
 
