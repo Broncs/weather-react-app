@@ -27,6 +27,7 @@ body {
 
 .App.warm {
   background-image: url("./assets/warm-bg.jpg");
+  transition: 0.4s ease;
 }
 
 main {
@@ -143,5 +144,74 @@ main {
   }
   .weather-box .temp {
     font-size: 8rem;
+  }
+
+  .App.warm {
+    background-image: none;
+  }
+  .App.cold {
+    background-image: none;
+  }
+  .App {
+    max-width: 1000px;
+    background-image: none;
+  }
+
+  .bg-warm {
+    background-image: url("./assets/warm-desktop.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+  }
+  .bg-cold {
+    background-image: url("./assets/cold-desktop.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+  }
+
+  .container {
+    padding: 5rem 0;
+    background-image: none;
+  }
+
+  .search-box {
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  .search-box .search-bar {
+    border-radius: 1rem;
+  }
+
+  .weather-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 15px 25px;
+    margin: 30px;
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    height: 400px;
+    position: relative;
+  }
+
+  .weather-box .temp {
+    margin: 0;
+  }
+  .weather-box .weather {
+    position: absolute;
+    right: 0;
+    margin: 0 2rem;
+    top: 80px;
+  }
+
+  .icon {
+    position: absolute;
+    right: 4.5rem;
+  }
+  .search-box .search-bar {
+    margin-bottom: 2rem;
   }
 } ;
